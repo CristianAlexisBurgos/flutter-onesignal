@@ -57,7 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     
   Future<void> initOneSignalMethod() async {
-    await OneSignal.shared.init("c8bde7e2-f81b-4ee0-9710-c768c7066ad3");
+    await OneSignal.shared.init("c8bde7e2-f81b-4ee0-9710-c768c7066ad3", iOSSettings: {
+      OSiOSSettings.autoPrompt: false,
+      OSiOSSettings.promptBeforeOpeningPushUrl: true
+    });
+    
+    OneSignal.shared.promptUserForPushNotificationPermission(fallbackToSettings: true);
+
     OneSignal.shared
       .setInFocusDisplayType(OSNotificationDisplayType.notification);
 
